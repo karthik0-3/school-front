@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-sm{
+            padding-top: 20px;
+            height: 100vh;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)">
+            <!-- hidden -->
+            <input type="hidden" id="name" formControlName="name" readonly>
+
+            <input type="hidden" id="subject" formControlName="subject" readonly>
+
+            <!-- frontend -->
+            <div class="row justify-content-md-center">
+                <div class="col-sm-3">
+                    <br>
+                    <label>Name<br></label>
+                    <input type="text" class="form-control" 
+                    value="{{ show_name.name.charAt(0).toUpperCase() + show_name.name.slice(1) }}" readonly>
+                    <br>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-sm-3">
+                    <label>Subject<br></label>
+                    <input type="text" class="form-control" 
+                    value="{{ show_sub.subject.charAt(0).toUpperCase() + show_sub.subject.slice(1) }}" readonly>
+                    <br>
+                </div>
+            </div> 
+            <div class="row justify-content-md-center">
+                <div class="col-sm-3">
+                    <label for="mark">Marks<br></label>
+                    <input type="text" class="form-control" id="mark" formControlName="mark">
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+

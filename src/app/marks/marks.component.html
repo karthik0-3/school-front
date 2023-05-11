@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th, td{
+            text-align: center;
+        }
+
+        td:hover {
+            background-color: #cfe2ff;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        .container-sm{
+            padding-top: 20px;
+            height: 100vh;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <h3 style="text-align: center; margin-bottom: 20px;">Student marks</h3>
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <table class="table">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Names/Subjects</th>
+                            <th *ngFor="let i of subjects">
+                                {{ i.subject.charAt(0).toUpperCase() + i.subject.slice(1) }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr *ngFor="let i of marks">
+                            <th class="table-primary">
+                                {{ i.name.charAt(0).toUpperCase() + i.name.slice(1) }}
+                            </th>
+                            <td *ngFor="let j of subjects" (click)="redirect(i[j.subject])">
+                                {{ i[j.subject].mark }}
+                            </td>
+                        </tr> -->
+                        <tr *ngFor="let name of keys">
+                            <th class="table-primary">{{ name.charAt(0).toUpperCase() + name.slice(1) }}</th>                        
+                        <tr>
+                        <tr *ngFor="let i of obj">
+                            <th class="table-primary">
+                                 
+                            </th>
+                            <ng-component *ngFor="let j of obj">
+                                <td *ngFor="let k of subjects">
+                                    {{ j[i.name].k }}
+                                </td>
+                            </ng-component>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </div>   
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-sm{
+            padding-top: 20px;
+            height: 100vh;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <form #studentsForm="ngForm" (ngSubmit)="onSubmit(studentsForm.value)">
+            <div class="form-group">
+                <div class="row justify-content-md-center"> 
+                    <div class="col-sm-3">
+                        <br>
+                        <label for="exampleFormControlSelect1">Students<br></label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="name" ngModel>
+                            <option *ngFor="let i of _names" value="{{ i.id }}">
+                                <label>
+                                    {{ i.name.charAt(0).toUpperCase() + i.name.slice(1) }}
+                                </label>
+                            </option>
+                        </select>   
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row justify-content-md-center">
+                    <div class="col-sm-3">
+                        <label for="exampleFormControlSelect1">Subjects<br></label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="subject" ngModel>
+                            <option *ngFor="let i of _subjects" value="{{ i.id }}">
+                                <label>
+                                {{ i.subject.charAt(0).toUpperCase() + i.subject.slice(1) }}
+                                </label>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-sm-3">
+                    <br>
+                    <label>Marks<br></label>
+                    <input type="text" class="form-control" name="mark" ngModel>
+                </div>
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
