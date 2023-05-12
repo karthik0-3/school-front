@@ -40,26 +40,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr *ngFor="let i of marks">
+                        <tr *ngFor="let name of mark_list">
                             <th class="table-primary">
-                                {{ i.name.charAt(0).toUpperCase() + i.name.slice(1) }}
+                                {{ name.name.charAt(0).toUpperCase() + name.name.slice(1) }}
                             </th>
-                            <td *ngFor="let j of subjects" (click)="redirect(i[j.subject])">
-                                {{ i[j.subject].mark }}
-                            </td>
-                        </tr> -->
-                        <tr *ngFor="let name of keys">
-                            <th class="table-primary">{{ name.charAt(0).toUpperCase() + name.slice(1) }}</th>                        
-                        <tr>
-                        <tr *ngFor="let i of obj">
-                            <th class="table-primary">
-                                 
-                            </th>
-                            <ng-component *ngFor="let j of obj">
-                                <td *ngFor="let k of subjects">
-                                    {{ j[i.name].k }}
-                                </td>
-                            </ng-component>
+                            <td *ngFor="let subject of sub_list" (click)="redirect(name[subject].id)">
+                                {{ name[subject].mark }}
+                            </td>                        
                         </tr>
                     </tbody>
                 </table> 

@@ -15,38 +15,17 @@ export class MarksComponent {
   names: any;
   subjects: any;
   marks: any;
-  keys: any;
+  mark_list: any;
+  sub_list: any;
 
   redirect(id: any): void{
     let route = '/mform/';
-    if (id.id != null){
-      this.router.navigate([route, id.id]);
+    if (id != null){
+      this.router.navigate([route, id]);
     } else {
       this.router.navigate([route]);
     }
   }
-
-  // prepareTable(): void{
-  //   let made_table:any[]; 
-  //   made_table = []
-  //   for (let i in this.names){
-  //     let temp_marks: any = {name: this.names[i].name};
-  //     for (let j in this.subjects){
-  //       let sub_mark = {}
-  //       for (let k in this.obj){
-  //         if (this.names[i].id == this.obj[k].name && this.subjects[j].id == this.obj[k].subject){
-  //           sub_mark = {"mark": this.obj[k].mark, "id": this.obj[k].id}
-  //           break;
-  //         } else {
-  //           sub_mark = {"mark": "", "id": null};
-  //         }
-  //       }
-  //       temp_marks[this.subjects[j].subject] = sub_mark;
-  //     } 
-  //     made_table.push(temp_marks);
-  //   } 
-  //   this.marks = made_table;
-  // }
 
   getStudentsNames(): void{
     this.http.get("http://127.0.0.1:8000/students/").subscribe(
@@ -56,23 +35,28 @@ export class MarksComponent {
 
   getSubjects(): void{
     this.http.get("http://127.0.0.1:8000/subjects/").subscribe(
-      data => {this.subjects = data;} 
+      data => {this.subjects = data; this.subListMaker();} 
     )
   }
 
-  testing(): void{
-    this.keys = []
-    console.log(this.obj[0])
-    for(let i in this.obj){
-      let x = Object.keys(this.obj[i]);
-      this.keys.push(x)
+  subListMaker(): void{
+    this.sub_list = []
+    for(let i in this.subjects){
+      let x = this.subjects[i].subject
+      this.sub_list.push(x)
     }
-    const subjects = [];
-    // loop thru the keys
-    // use this.obj to get the subs from the key above
-    // [{english: {mark: 12, id: 89}}]
-    console.log(this.obj.keys[0])
-    
+    console.log(this.sub_list)
+  }
+
+  testing(): void{
+    this.mark_list = []
+    for(let i in this.obj){
+      let x = Object.keys(this.obj[i])[0];
+      let mark: any;
+      mark = Object.values(this.obj[i])[0];
+      mark['name'] = x
+      this.mark_list.push(mark)
+    }
   }
 
   ngOnInit(): void{
