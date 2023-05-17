@@ -16,9 +16,7 @@ export class MarksformComponent {
 
   onSubmit(data: {name: string, subject: string, mark: string}){
     this.http.post("http://127.0.0.1:8000/marks/", data).subscribe(
-      (res) => {
-        console.log(res);
-    });
+      (res) => {});
 
     setTimeout(() => {
       this.router.navigate(['/marks']);
@@ -41,6 +39,5 @@ export class MarksformComponent {
     this.http.get("http://127.0.0.1:8000/students/").subscribe(
         data => {this._names = data; this.getSubjects(); this.getMarks();}
     )
-    console.log(this._names)
   }  
 }

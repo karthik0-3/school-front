@@ -45,7 +45,6 @@ export class MarksComponent {
       let x = this.subjects[i].subject
       this.sub_list.push(x)
     }
-    console.log(this.sub_list)
   }
 
   testing(): void{

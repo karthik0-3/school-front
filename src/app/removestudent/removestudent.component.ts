@@ -13,11 +13,8 @@ export class RemovestudentComponent {
   _names: any; //_ var are for get method
 
   onRemove(data: {name: string}){
-    console.log(data.name)
     this.http.delete("http://127.0.0.1:8000/students/"+data.name).subscribe(
-      (res) => {
-        console.log(res);
-    });
+      (res) => {});
 
     setTimeout(() => {
       this.router.navigate(['/students']);

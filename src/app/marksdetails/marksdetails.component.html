@@ -17,12 +17,6 @@
 <body>
     <div class="container-sm">
         <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)">
-            <!-- hidden -->
-            <input type="hidden" id="name" formControlName="name" readonly>
-
-            <input type="hidden" id="subject" formControlName="subject" readonly>
-
-            <!-- frontend -->
             <div class="row justify-content-md-center">
                 <div class="col-sm-3">
                     <br>
@@ -35,7 +29,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-sm-3">
                     <label>Subject<br></label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                     value="{{ show_sub.subject.charAt(0).toUpperCase() + show_sub.subject.slice(1) }}" readonly>
                     <br>
                 </div>
@@ -48,7 +42,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button [disabled]="editForm.invalid" type="submit" class="btn btn-dark">Submit</button>
             </div>
         </form>
     </div>

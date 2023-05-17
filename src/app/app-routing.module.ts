@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { ViewsComponent } from './views/views.component';
 import { MarksComponent } from './marks/marks.component';
 import { SummaryComponent } from './summary/summary.component';
@@ -8,7 +8,8 @@ import { SubjectformComponent } from './subjectform/subjectform.component';
 import { MarksformComponent } from './marksform/marksform.component';
 import { RemovestudentComponent } from './removestudent/removestudent.component';
 import { MarksdetailsComponent } from './marksdetails/marksdetails.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MultiformComponent } from './multiform/multiform.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes  =  [
   {path: 'students', component: ViewsComponent },
@@ -19,11 +20,14 @@ const routes: Routes  =  [
   {path: 'mform', component: MarksformComponent},
   {path: 'mform/:id', component: MarksdetailsComponent},
   {path: 'rform', component: RemovestudentComponent},
-  {path: '', component: NavbarComponent},
+  {path: 'multiform', component: MultiformComponent},
+  {path: '', component: HomepageComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router){}
+}

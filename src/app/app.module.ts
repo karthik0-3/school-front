@@ -16,6 +16,9 @@ import { RemovestudentComponent } from './removestudent/removestudent.component'
 import { MarksdetailsComponent } from './marksdetails/marksdetails.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TableComponent } from './table/table.component';
+import { MultiformComponent } from './multiform/multiform.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     RemovestudentComponent,
     MarksdetailsComponent,
     NavbarComponent,
+    TableComponent,
+    MultiformComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,

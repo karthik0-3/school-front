@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-sm{
+            padding-top: 20px;
+            height: 100vh;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
+        .buttonInline{
+            display: inline-block;
+            margin: 0px 5px 0px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <form [formGroup]="multiStepForm">
+
+            <!-- first part-->
+            <div *ngIf="page_number == 1">
+                <div class="row justify-content-md-center">
+                    <div class="col-sm-3">
+                        <br>
+                        <label>Name<br></label>
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="name">
+                            <option value="" disabled selected>Choose student</option>
+                            <option *ngFor="let i of _names" value="{{ i.id }}">
+                                <label>
+                                {{ i.name.charAt(0).toUpperCase() + i.name.slice(1) }}
+                                </label>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-sm-3">
+                        <br>
+                        <label>Subject<br></label>
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="subject">
+                            <option value="" disabled selected>Choose subject</option>
+                            <option *ngFor="let i of _subjects" value="{{ i.id }}">
+                                <label>
+                                {{ i.subject.charAt(0).toUpperCase() + i.subject.slice(1) }}
+                                </label>
+                            </option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- second part -->
+            <div *ngIf="page_number == 2" class="row justify-content-md-center">
+                <div class="col-sm-3">
+                    <br>
+                    <label>Marks<br></label>
+                    <input placeholder="Enter marks" type="text" class="form-control" id="mark" formControlName="mark">
+                    <br>
+                </div>
+            </div>
+
+
+            <div style="text-align: center;">
+                <div *ngIf="page_number == 2" class="buttonInline">
+                    <button class="btn btn-dark" type="submit" (click)="previousPage()">Back</button>
+                </div>
+                <div *ngIf="page_number == 2" class="buttonInline">
+                    <button class="btn btn-dark" type="submit" (click)="cancel()">Cancel</button>
+                </div>
+                <div *ngIf="page_number == 2" class="buttonInline">
+                    <button [disabled]="multiStepForm.invalid" type="submit" class="btn btn-dark" (click)="onSubmit(multiStepForm.value)">Submit</button>
+                </div>
+            </div>
+            <div *ngIf="page_number == 1" style="text-align: center;">
+                <button [disabled]="isPartlyValid()" type="submit" class="btn btn-dark" (click)="nextPage()">Next</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</body>
+</html>

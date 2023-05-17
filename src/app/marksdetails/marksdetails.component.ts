@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
 
 @Component({
   selector: 'app-marksdetails',
@@ -15,7 +16,6 @@ export class MarksdetailsComponent {
     private http:HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
   ){}
 
   _subjects: any; //_ var are for get method
@@ -32,7 +32,7 @@ export class MarksdetailsComponent {
   editForm = new FormGroup({
     name: new FormControl(''),
     subject: new FormControl(''),
-    mark: new FormControl(''),
+    mark: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   })
 
   getSubjects(): void{
@@ -54,14 +54,10 @@ export class MarksdetailsComponent {
   }
 
   getSubAndName(): void{
-
-    console.log("mdata", this.mark_data)
-
     for (let i in this._names){
       if (this.mark_data.name == this._names[i].id){
         this.show_name.name = this._names[i].name;
         this.show_name.id = this.mark_data.name;
-        console.log("sname", this.show_name);
       }
     }
     
@@ -69,7 +65,6 @@ export class MarksdetailsComponent {
       if (this.mark_data.subject == this._subjects[i].id){
         this.show_sub.subject = this._subjects[i].subject;
         this.show_sub.id = this.mark_data.subject;
-        console.log("ssub", this.show_sub);
       }
     }
     this.editForm.setValue({name: this.show_name.id, subject: this.show_sub.id, mark: null})
@@ -77,10 +72,8 @@ export class MarksdetailsComponent {
   }
 
   onSubmit(data: any){
-    console.log(data);
     this.http.patch("http://127.0.0.1:8000/marks/"+this.mark_id+"/", data).subscribe(
-      res => {
-    });
+      res => {});
 
     setTimeout(() => {
       this.router.navigate(['/marks']);
